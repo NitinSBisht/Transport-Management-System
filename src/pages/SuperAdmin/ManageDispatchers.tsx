@@ -23,7 +23,7 @@ const ManageDispatchers: React.FC = () => {
   });
 
   // Fetch dispatchers based on selected organization
-  const { data: dispatchersResponse, isLoading: isLoadingDispatchers, error, refetch } = useGetDispatchersQuery({
+  const { data: dispatchersResponse, isLoading: isLoadingDispatchers, isFetching: isFetchingDispatchers, error, refetch } = useGetDispatchersQuery({
     admin: selectedOrganization,
     search: searchQuery,
     page: currentPage,
@@ -226,7 +226,7 @@ const ManageDispatchers: React.FC = () => {
 
       {/* Dispatchers Table */}
       <Card padding="none">
-        {isLoadingDispatchers ? (
+        {isLoadingDispatchers || isFetchingDispatchers ? (
           <div className="flex items-center justify-center py-12">
             <Loader size="lg" text="Loading dispatchers..." />
           </div>
